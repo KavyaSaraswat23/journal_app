@@ -7,9 +7,6 @@ export default async function CollectionPage({ params }) {
   const resolvedParams = await params;
   const collectionId = resolvedParams.id;
 
-  console.log("PARAMS:", resolvedParams);
-  console.log("COLLECTION ID:", collectionId);
-
   const entries = await getJournalEntry({ collectionId });
 
   if (!entries?.data?.entries) {

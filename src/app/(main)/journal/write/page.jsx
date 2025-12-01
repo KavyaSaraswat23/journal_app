@@ -69,17 +69,6 @@ export default function JournalEntryPage() {
     data: actionResult,
   } = useFetch(isEditMode ? updateJournalEntry : createJournalEntry);
 
-  // Add comment explaining routing after journal creation
-  // After successful journal creation/update, router.push() redirects to collection page
-  // To redirect to dashboard instead, change the router.push() destination in the useEffect below
-  // Current routing logic is in useEffect that watches actionResult:
-  /*
-  useEffect(() => {
-    if (actionResult && !actionLoading) {
-      router.push('/dashboard'); // Change destination here to redirect to dashboard
-    }
-  }, [actionResult, actionLoading]);
-  */
   const {
     loading: createCollectionLoading,
     fn: createCollectionFn,
@@ -117,7 +106,6 @@ export default function JournalEntryPage() {
     }
   }, [editId]);
 
-  // Handle setting form data from draft
   useEffect(() => {
     if (isEditMode && existingEntry) {
       reset({
@@ -160,12 +148,13 @@ export default function JournalEntryPage() {
       if (!isEditMode) {
         saveDraftFn({ title: "", content: "", mood: "" });
       }
-
+      console.log(actionResult, "checking  1");
       router.push(
         `/collection/${
           actionResult.collectionId ? actionResult.collectionId : "unorganized"
         }`
       );
+      console.log(actionResult.collectionId, "checking 2");
 
       toast.success(
         `Entry ${isEditMode ? "updated" : "created"} successfully!`
@@ -174,7 +163,7 @@ export default function JournalEntryPage() {
   }, [actionResult, actionLoading]);
 
   const onSubmit = handleSubmit(async (data) => {
-    const mood = getMoodById(data.mood);
+    const mood = await getMoodById(data.mood);
     actionFn({
       ...data,
       moodScore: mood.score,

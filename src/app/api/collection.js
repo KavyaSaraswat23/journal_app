@@ -62,7 +62,7 @@ export async function createCollection(data) {
         userId: user.id,
       },
     });
-    console.log(collection, "collection")
+    // console.log(collection, "collection")
     // check here
     revalidatePath("/dashboard");
     return collection;

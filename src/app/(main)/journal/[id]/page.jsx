@@ -11,8 +11,6 @@ const JournalEntryPage = async({params}) => {
   const resolvedParams = await params;
   const id = resolvedParams.id;
 
-  console.log("PARAMS:", resolvedParams, "journal");
-  console.log("COLLECTION ID:", id);
   const entry = await getJournalEntryById(id);
   console.log(entry.mood);
   const mood = await getMoodById(entry.mood);

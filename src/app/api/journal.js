@@ -8,7 +8,7 @@ import { request } from "@arcjet/next";
 import aj from "@/lib/arcJet";
 import { toast } from "sonner";
 export async function createJournalEntry(data) {
-
+  console.log(data, "data in create journal entry");
   try {
     const { userId } = await auth();
 
@@ -22,8 +22,8 @@ export async function createJournalEntry(data) {
       userId,
       requested: 1
     })
-
-    if (decision) {
+    // console.log(decision);
+    if (decision.isDenied()) {
       if (decision.reason.isRateLimit) {
         const { remaining, reset } = decision.reason;
 
@@ -36,8 +36,8 @@ export async function createJournalEntry(data) {
         });
 
         toast.error("Too Many requests please try again later")
-        throw new Error("Too Many requests please try again later")
         console.log("Arject RAte limiting Failed")
+        throw new Error("Too Many requests please try again later")
       }
       throw new Error("Request Blocked");
     }
@@ -57,7 +57,7 @@ export async function createJournalEntry(data) {
     if (!mood) {
       throw new Error("Invalid mood");
     }
-    console.log(mood);
+    // console.log(mood);
     const moodImage = await getMoodImage(mood.pixabayQuery);
 
     const entry = await prisma.entry.create({
@@ -67,10 +67,11 @@ export async function createJournalEntry(data) {
         mood: mood.id,
         moodScore: mood.score,
         moodImageUrl: moodImage,
+        collectionId: data.collectionId || null,
         userId: user.id
       }
     });
-    console.log(entry, "entry");
+    // console.log(entry, "entry");
     await prisma.draft.deleteMany({
       where: {
         userId: user.id
@@ -80,7 +81,7 @@ export async function createJournalEntry(data) {
     revalidatePath('/dashboard');
     return entry
   } catch (error) {
-
+    throw new Error(error);
   }
 
 
@@ -90,7 +91,7 @@ export async function getJournalEntry({ collectionId, orderBy = 'desc' } = {}) {
 
   try {
     const { userId } = await auth();
-    console.log(userId)
+    // console.log(userId)
     if (!userId) {
       throw new Error("Unauthorized");
     }
@@ -147,7 +148,7 @@ export async function getJournalEntry({ collectionId, orderBy = 'desc' } = {}) {
 export async function getJournalEntryById(id) {
   try {
     const { userId } = await auth();
-    console.log(userId)
+    // console.log(userId)
     if (!userId) {
       throw new Error("Unauthorized");
     }
