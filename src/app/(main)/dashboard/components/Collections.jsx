@@ -9,7 +9,7 @@ import useFetch from "@/hooks/use-fetch";
 
 const Collections = ({ collections = [], entriesByCollection }) => {
   const [isCollectionDialogOpen, setIsCollectionDialogOpen] = useState(false);
-  console.log(collections, "preview")
+  // console.log(collections, "preview")
   const {
     loading: createCollectionLoading,
     fn: createCollectionFn,
@@ -19,7 +19,7 @@ const Collections = ({ collections = [], entriesByCollection }) => {
   useEffect(() => {
     if (createdCollection) {
       setIsCollectionDialogOpen(false);
-      createCollectionFn(); // Refresh collections list
+      // createCollectionFn(); // Refresh collections list
       toast.success(`Collection ${createdCollection.name} created!`);
     }
 
