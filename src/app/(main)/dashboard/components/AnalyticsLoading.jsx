@@ -3,7 +3,7 @@ import { getAnalytics } from '@/app/api/analytics';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from '@/components/ui/skeleton';
 const AnalyticsLoading = () => {
-return (
+  return (
     <div className="space-y-6">
       <Skeleton className="h-12 w-60" />
       {/* Stats Cards Skeleton */}
