@@ -33,8 +33,7 @@ export default function DeleteDialog({ entryId }) {
       setDeleteDialogOpen(false);
       toast.error("Journal entry deleted successfully");
       router.push(
-        `/collection/${
-          deletedEntry.collectionId ? deletedEntry.collectionId : "unorganized"
+        `/collection/${deletedEntry.collectionId ? deletedEntry.collectionId : "unorganized"
         }`
       );
     }
