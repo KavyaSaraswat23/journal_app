@@ -19,6 +19,7 @@ import useFetch from "@/hooks/use-fetch";
 import { useEffect } from "react";
 
 export default function DeleteCollectionDialog({
+  collectionId,
   collection,
   entriesCount = 0,
 }) {
@@ -49,10 +50,10 @@ export default function DeleteCollectionDialog({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger>
-        
+        <Button variant={"destructive"}>
           <Trash2 className="h-4 w-4 mr-2" />
           Delete Collection
-        
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
