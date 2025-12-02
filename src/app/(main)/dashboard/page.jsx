@@ -3,16 +3,13 @@ import { getJournalEntry } from '@/app/api/journal';
 import Collections from './components/Collections';
 import MoodAnalytics from './components/MoodAnalytics';
 import React from 'react'
-import AnalyticsLoading from './components/AnalyticsLoading';
 
 const Dashboard = async () => {
   const collections = await getCollections();
   const entriesData = await getJournalEntry();
-  // console.log(collections, "collections");
-  // console.log(entriesData, "entriesData");
-  const entriesByCollection = entriesData ?.data.entries.reduce((acc, entry) => {
+  const entriesByCollection = entriesData?.data.entries.reduce((acc, entry) => {
     const collectionId = entry.collectionId || 'unorganized';
-    if (!acc[collectionId]){
+    if (!acc[collectionId]) {
       acc[collectionId] = [];
     }
     acc[collectionId].push(entry);
@@ -21,16 +18,19 @@ const Dashboard = async () => {
 
   // console.log(entriesByCollection, "entriesByCollection");
   return (
-    <div className="px-4 py-8 space-y-8">
-      {/* Analytics Section */}
-      <section className="space-y-4">
-        <MoodAnalytics />
-      </section>
+    <div className='container mx-auto px-4 py-8'>
 
-      <Collections
-        collections={collections}
-        entriesByCollection={entriesByCollection}
-      />
+      <div className="px-4 py-8 space-y-8">
+        {/* Analytics Section */}
+        <section className="space-y-4">
+          <MoodAnalytics />
+        </section>
+
+        <Collections
+          collections={collections}
+          entriesByCollection={entriesByCollection}
+        />
+      </div>
     </div>
   );
 };
