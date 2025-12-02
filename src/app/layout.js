@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "My Journal",
-  description: "Journoling app",
+  title: "Unfold",
+  icons: {
+    icon: "/logo.ico",
+  },
+  description: "Journal app",
 };
 
 export default function RootLayout({ children }) {
@@ -28,17 +31,17 @@ export default function RootLayout({ children }) {
           {/* can change text and backgroud here */}
           <Header />
           <main>
-          <Toaster richColors/>
+            <Toaster richColors />
             {children}
           </main>
           <footer>
-            <div> 
+            <div>
               {/* <h4 className=" text-amber-600">My Journal App</h4> */}
             </div>
           </footer>
         </body>
       </html>
     </ClerkProvider>
-    
+
   );
 }
