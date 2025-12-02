@@ -116,16 +116,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
+
 @layer utilities {
-  .gradient-title{
-    @apply font-extrabold bg-linear-to-t from-orange-500 via-orange-300 to-orange-400 bg-clip-text
-    tracking-tighter text-transparent pr-2 pb-2
+  .gradient-title {
+    @apply font-extrabold bg-linear-to-t from-orange-500 via-orange-300 to-orange-400 bg-clip-text tracking-tighter text-transparent pr-2 pb-2
   }
 }
+
 .ql-toolbar {
   border-radius: 5px;
 }
@@ -144,4 +146,3 @@
   overflow-y: auto;
   width: 100%;
 }
-
