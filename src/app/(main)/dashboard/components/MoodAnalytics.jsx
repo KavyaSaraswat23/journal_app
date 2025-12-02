@@ -1,4 +1,4 @@
-"use client"
+2
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -9,7 +9,7 @@ import {
   SelectItem
 } from '@/components/ui/select';
 import useFetch from '@/hooks/use-fetch';
-import { getAnalytics } from '@/app/api/analytics';
+import { getAnalyticsClient } from "@/lib/getAnalyticsClient";
 import { getMoodById, getMoodTrend } from '../../lib/mood';
 import { useUser } from '@clerk/nextjs';
 import AnalyticsLoading from './AnalyticsLoading';
@@ -32,11 +32,11 @@ const timeOptions = [
 
 const MoodAnalytics = () => {
   const [period, setPeriod] = useState('7d');
-  const {
-    loading,
-    data: analytics,
-    fn: fetchAnalytics
-  } = useFetch(getAnalytics);
+const {
+  loading,
+  data: analytics,
+  fn: fetchAnalytics
+} = useFetch(getAnalyticsClient);
 
   const { isLoaded } = useUser();
 

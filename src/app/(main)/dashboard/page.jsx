@@ -1,4 +1,3 @@
-"use client"
 import { getCollections } from '@/app/api/collection'
 import { getJournalEntry } from '@/app/api/journal';
 import Collections from './components/Collections';
