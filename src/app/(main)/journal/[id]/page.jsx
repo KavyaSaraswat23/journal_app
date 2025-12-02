@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { getMoodById } from '../../lib/mood';
 import EditButton from '../components/EditButton';
 import DeleteDialog from '../components/DeleteDialog';
-const JournalEntryPage = async({params}) => {
+const JournalEntryPage = async ({ params }) => {
   const resolvedParams = await params;
   const id = resolvedParams.id;
 
@@ -39,7 +39,7 @@ const JournalEntryPage = async({params}) => {
                 </h1>
               </div>
               <p className="text-gray-500">
-                {/* Created {format(new Date(entry.createdAt), "PPP")} */}
+
               </p>
             </div>
 
