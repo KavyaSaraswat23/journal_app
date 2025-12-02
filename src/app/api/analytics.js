@@ -34,7 +34,7 @@ export async function getAnalytics({ period = '30d' }) {
   const entries = await prisma.entry.findMany({
     where: {
       userId: user.id,
-      createdAt: {gte: startDate}
+      createdAt: { gte: startDate }
     },
     orderBy: {
       createdAt: 'asc',
@@ -54,7 +54,7 @@ export async function getAnalytics({ period = '30d' }) {
     acc[date].totalScore += entry.moodScore;
     acc[date].count += 1;
     acc[date].entries.push(entry);
-    console.log(acc[date]);
+    // console.log(acc[date]);
     return acc;
   }, {});
 
