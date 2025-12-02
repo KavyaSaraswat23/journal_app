@@ -49,7 +49,7 @@ const MoodAnalytics = () => {
   }
 
   // can check here !!!
-  const {stats, timeline} = analytics.data;
+  const { stats, timeline } = analytics.data;
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload?.length) {
