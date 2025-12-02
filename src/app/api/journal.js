@@ -178,7 +178,7 @@ export async function getJournalEntryById(id) {
       }
     });
 
-    if (!entry){
+    if (!entry) {
       throw new Error("Entry doesn't exist")
     }
 
@@ -188,7 +188,7 @@ export async function getJournalEntryById(id) {
   }
 }
 
-export async function deleteJournal(id) {
+export async function deleteJournal(entryId) {
   try {
     const { userId } = await auth();
 
@@ -209,11 +209,11 @@ export async function deleteJournal(id) {
 
     const entry = await prisma.entry.delete({
       where: {
-        userId: user.id,
+        id: entryId
       },
     });
 
-    if (!entry){
+    if (!entry) {
       throw new Error("Entry not Found")
     }
     return true;
