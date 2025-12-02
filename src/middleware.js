@@ -1,5 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import arcjet, {shield, detectBot, createMiddleware} from '@arcjet/next';
+import arcjet, { shield, detectBot, createMiddleware } from '@arcjet/next';
 import { NextResponse } from 'next/server';
 
 const isProtectedRoute = createRouteMatcher(
@@ -26,10 +26,10 @@ const aj = arcjet({
   ],
 });
 
-export default clerkMiddleware( async (auth, req) => {
-  const {userId, redirectToSignIn} = await auth();
+export default clerkMiddleware(async (auth, req) => {
+  const { userId, redirectToSignIn } = await auth();
 
-  if (!userId && isProtectedRoute(req)){
+  if (!userId && isProtectedRoute(req)) {
     return redirectToSignIn()
   }
 
