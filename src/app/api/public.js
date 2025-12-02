@@ -3,18 +3,18 @@ export const getDailyPrompts = unstable_cache(
     async () => {
         try {
             const res = await fetch("https://api.adviceslip.com/advice",
-                {cache: "no-store"}
+                { cache: "no-store" }
             )
             const data = await res.json();
             return data.slip.advice
         }
-        catch(err) {
+        catch (err) {
             return {
                 success: false,
                 data: "What's on your mind?"
             }
         }
-    }, ["daily-prompt"], 
+    }, ["daily-prompt"],
     {
         revalidate: 86400,
         tags: ["daily-prompts"]
