@@ -150,8 +150,7 @@ export default function JournalEntryPage() {
       }
       console.log(actionResult, "checking  1");
       router.push(
-        `/collection/${
-          actionResult.collectionId ? actionResult.collectionId : "unorganized"
+        `/collection/${actionResult.collectionId ? actionResult.collectionId : "unorganized"
         }`
       );
       console.log(actionResult.collectionId, "checking 2");
@@ -213,9 +212,8 @@ export default function JournalEntryPage() {
             disabled={isLoading}
             {...register("title")}
             placeholder="Give your entry a title..."
-            className={`py-5 md:text-md ${
-              errors.title ? "border-red-500" : ""
-            }`}
+            className={`py-5 md:text-md ${errors.title ? "border-red-500" : ""
+              }`}
           />
           {errors.title && (
             <p className="text-red-500 text-sm">{errors.title.message}</p>
