@@ -102,7 +102,7 @@ export async function getCollections() {
   }
 }
 
-export async function deleteCollections() {
+export async function deleteCollections(collectionId) {
   try {
     const { userId } = await auth();
 
@@ -123,11 +123,11 @@ export async function deleteCollections() {
 
     const collection = await prisma.collection.delete({
       where: {
-        userId: user.id,
+        id: collectionId,
       },
     });
 
-    if (!collection){
+    if (!collection) {
       throw new Error("Collecton not Found")
     }
     return true;
