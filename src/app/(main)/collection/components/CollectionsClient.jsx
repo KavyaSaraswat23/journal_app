@@ -13,9 +13,10 @@ export default function CollectionClient({ entries, collection, collectionId }) 
               ? "Unorganized Entries"
               : collection?.name || "Collection"}
           </h1>
-            {/* Delete Collections */}
+          {/* Delete Collections */}
           {collection && (
             <DeleteCollectionDialog
+              collectionId={collectionId}
               collection={collection}
               entriesCount={entries.length}
             />
