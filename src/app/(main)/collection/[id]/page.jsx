@@ -8,7 +8,7 @@ export default async function CollectionPage({ params }) {
 
   const entries = await getJournalEntry({ collectionId });
 
-  if (!entries?.data?.entries) {
+  if (!entries?.success || !entries?.data?.entries) {
     return <div>No entries found</div>;
   }
   const collections =

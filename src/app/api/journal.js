@@ -88,12 +88,11 @@ export async function createJournalEntry(data) {
 }
 
 export async function getJournalEntry({ collectionId, orderBy = 'desc' } = {}) {
-
   try {
     const { userId } = await auth();
-    // console.log(userId)
+    
     if (!userId) {
-      throw new Error("Unauthorized");
+      return { success: false, error: "Unauthorized" };
     }
 
     const user = await prisma.user.findUnique({
@@ -103,7 +102,7 @@ export async function getJournalEntry({ collectionId, orderBy = 'desc' } = {}) {
     });
 
     if (!user) {
-      throw new Error("User Doesn't Exist");
+      return { success: false, error: "User not found" };
     }
 
     const entries = await prisma.entry.findMany({
@@ -148,9 +147,9 @@ export async function getJournalEntry({ collectionId, orderBy = 'desc' } = {}) {
 export async function getJournalEntryById(id) {
   try {
     const { userId } = await auth();
-    // console.log(userId)
+    
     if (!userId) {
-      throw new Error("Unauthorized");
+      return null;
     }
 
     const user = await prisma.user.findUnique({
@@ -160,7 +159,7 @@ export async function getJournalEntryById(id) {
     });
 
     if (!user) {
-      throw new Error("User Doesn't Exist");
+      return null;
     }
 
     const entry = await prisma.entry.findFirst({
@@ -179,12 +178,13 @@ export async function getJournalEntryById(id) {
     });
 
     if (!entry) {
-      throw new Error("Entry doesn't exist")
+      return null;
     }
 
     return entry
   } catch (error) {
-    throw new Error(error.message);
+    console.error('Error fetching journal entry:', error);
+    return null;
   }
 }
 

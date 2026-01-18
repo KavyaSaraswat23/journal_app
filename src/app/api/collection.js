@@ -76,18 +76,17 @@ export async function getCollections() {
     const { userId } = await auth();
 
     if (!userId) {
-      throw new Error("Unauthorized User");
+      return [];
     }
 
     const user = await prisma.user.findUnique({
       where: {
-
         clerkUserId: userId
       }
     });
 
     if (!user) {
-      throw new Error("User Doesn't exist");
+      return [];
     }
 
     const collection = await prisma.collection.findMany({
@@ -98,7 +97,8 @@ export async function getCollections() {
     });
     return collection;
   } catch (error) {
-    throw new Error(error.message);
+    console.error('Error fetching collections:', error);
+    return [];
   }
 }
 
