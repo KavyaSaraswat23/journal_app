@@ -4,8 +4,7 @@ import { getCollections } from "@/app/api/collection";
 import CollectionClient from "../components/CollectionsClient";
 
 export default async function CollectionPage({ params }) {
-  const resolvedParams = await params;
-  const collectionId = resolvedParams.id;
+  const collectionId = params.id;
 
   const entries = await getJournalEntry({ collectionId });
 

@@ -8,8 +8,7 @@ import { getMoodById } from '../../lib/mood';
 import EditButton from '../components/EditButton';
 import DeleteDialog from '../components/DeleteDialog';
 const JournalEntryPage = async ({ params }) => {
-  const resolvedParams = await params;
-  const id = resolvedParams.id;
+  const id = params.id;
 
   const entry = await getJournalEntryById(id);
   console.log(entry.mood);
