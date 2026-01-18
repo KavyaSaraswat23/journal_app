@@ -8,7 +8,6 @@ import UserMenu from "./usermenu";
 import { checkUser } from "@/lib/checkUser";
 import logo from "../data/logo.png"
 async function Header() {
-  await checkUser();
 
   return (
     <header className="container mx-auto">

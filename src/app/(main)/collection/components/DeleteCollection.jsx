@@ -49,7 +49,7 @@ export default function DeleteCollectionDialog({
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
         <Button variant={"destructive"}>
           <Trash2 className="h-4 w-4 mr-2" />
           Delete Collection
